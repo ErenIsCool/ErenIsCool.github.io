@@ -61,6 +61,7 @@
             padding: 10px 15px;
             border-radius: 5px;
             cursor: pointer;
+            margin: 5px;
         }
     </style>
 </head>
@@ -70,7 +71,7 @@
         <h1>Login - Whumpy</h1>
     </header>
 
-    <section>
+    <section id="loginSection">
         <form onsubmit="validateLogin()">
             <label for="username">Username:</label>
             <input type="text" id="username" name="username" required>
@@ -80,6 +81,24 @@
 
             <button type="submit">Login</button>
         </form>
+    </section>
+
+    <section id="buttonsSection" style="display: none;">
+        <button onclick="openLink('https://docs.google.com/document/d/1cp3l5P77y64jSoZ4eF40bBiCxGMnbaUfMuf7kJO1GFM/edit?usp=sharing')">1: mdnotes</button>
+        <button>2: n/a</button>
+        <button>3: n/a</button>
+        <button>4: n/a</button>
+        <button>5: n/a</button>
+        <button>6: n/a</button>
+        <button>7: n/a</button>
+        <button>8: n/a</button>
+        <button>9: n/a</button>
+        <button>10: n/a</button>
+        <button>11: n/a</button>
+        <button>12: n/a</button>
+        <button>13: n/a</button>
+        <button>14: n/a</button>
+        <button>15: n/a</button>
     </section>
 
     <footer>
@@ -92,10 +111,15 @@
             var password = document.getElementById("password").value;
 
             if (username === "admin" && password === "admin") {
-                alert("Login successful!");
+                document.getElementById("loginSection").style.display = "none";
+                document.getElementById("buttonsSection").style.display = "block";
             } else {
                 alert("Invalid username or password. Try again.");
             }
+        }
+
+        function openLink(link) {
+            window.open(link, "_blank");
         }
     </script>
 
