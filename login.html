@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Whumpy</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #1e1e1e;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            color: #ffffff;
+        }
+
+        header {
+            background-color: #121212;
+            color: #ffffff;
+            padding: 20px;
+            border-radius: 10px 10px 0 0;
+            width: 100%;
+            text-align: center;
+        }
+
+        section {
+            margin: 20px;
+            text-align: center;
+            border-radius: 10px;
+            background-color: #292929;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        footer {
+            background-color: #121212;
+            color: #ffffff;
+            padding: 10px;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            border-radius: 0 0 10px 10px;
+            text-align: center;
+        }
+
+        input {
+            padding: 10px;
+            margin: 10px 0;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        button {
+            background-color: #3498db;
+            color: #ffffff;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Login - Whumpy</h1>
+    </header>
+
+    <section>
+        <form onsubmit="validateLogin()">
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" required>
+
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+
+            <button type="submit">Login</button>
+        </form>
+    </section>
+
+    <footer>
+        <p>&copy; 2023 Whumpy</p>
+    </footer>
+
+    <script>
+        function validateLogin() {
+            var username = document.getElementById("username").value;
+            var password = document.getElementById("password").value;
+
+            if (username === "admin" && password === "admin") {
+                alert("Login successful!");
+            } else {
+                alert("Invalid username or password. Try again.");
+            }
+        }
+    </script>
+
+</body>
+</html>
