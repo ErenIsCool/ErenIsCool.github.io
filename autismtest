@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 20px;
+        }
+        h1 {
+            color: #333;
+        }
+        form {
+            max-width: 400px;
+            margin: 0 auto;
+        }
+        input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+        button {
+            background-color: #4caf50;
+            color: white;
+            padding: 10px;
+            border: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h1>Test Form</h1>
+    <form id="testForm">
+        <!-- Replace the placeholders with your questions and answers -->
+        <label for="q1">What is the capital of France?</label>
+        <input type="text" id="q1" name="q1" required>
+
+        <label for="q2">How many continents are there?</label>
+        <input type="text" id="q2" name="q2" required>
+
+        <!-- Add more questions as needed -->
+
+        <button type="button" onclick="evaluateTest()">Submit</button>
+    </form>
+
+    <script>
+        function evaluateTest() {
+            var score = 0;
+            // Replace the placeholders with correct answers
+            var answers = {
+                "q1": "Paris",
+                "q2": "7"
+                // Add more answers as needed
+            };
+
+            // Evaluate user answers
+            for (var question in answers) {
+                var userAnswer = document.getElementById(question).value.trim();
+                if (userAnswer.toLowerCase() === answers[question].toLowerCase()) {
+                    score += 1;
+                }
+            }
+
+            // Provide a result based on the score
+            if (score === Object.keys(answers).length) {
+                alert("Congratulations! You got all the questions right.");
+            } else {
+                alert("You scored " + score + " out of " + Object.keys(answers).length + ". Keep practicing!");
+            }
+        }
+    </script>
+</body>
+</html>
