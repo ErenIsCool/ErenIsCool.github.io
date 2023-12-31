@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Test Form</title>
+    <title>Free-Type Answer Test</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -32,45 +32,46 @@
     </style>
 </head>
 <body>
-    <h1>Test Form</h1>
-    <form id="testForm">
-        <!-- Replace the placeholders with your questions and answers -->
-        <label for="q1">Do you love Eren?</label>
-        <input type="text" id="q1" name="q1" required>
+    <h1>Free-Type Answer Test</h1>
+    <form id="freeTypeTestForm">
+        <!-- Replace the placeholders with your free-type answer questions -->
+        <label for="question1">Do you love Eren?</label>
+        <input type="text" id="question1" name="question1" required>
 
-        <label for="q2">What thoughts occupy your mind most frequently during the day? How do you handle challenging or stressful situations mentally?</label>
-        <input type="text" id="freeTypeAnswer" name="freeTypeAnswer" required>
-        
-        <label for="q1">If you could have a dick with a preset length, what would the length be?</label>
-        <input type="text" id="q3" name="q3" required>
+        <label for="question2">What thoughts occupy your mind most frequently during the day? How do you handle challenging or stressful situations mentally?</label>
+        <input type="text" id="question2" name="question2" required>
 
-        <button type="button" onclick="evaluateTest()">Submit</button>
+        <label for="question3">Does your bedframe crack when you lay down?</label>
+        <input type="text" id="question3" name="question3" required>
+
+        <label for="question4">Are you Fahima Giash?</label>
+        <input type="text" id="question4" name="question4" required>
+
+        <button type="button" onclick="evaluateFreeTypeTest()">Submit</button>
     </form>
 
     <script>
-        function evaluateTest() {
-            var score = 0;
-            // Replace the placeholders with correct answers
-            var answers = {
-                "q1": "Yes",
-                "q2": ""
-                // Add more answers as needed
+        function evaluateFreeTypeTest() {
+            // Define the expected answers
+            var expectedAnswers = {
+                "question1": "yes",
+                "question2": null, // No specific expected answer, any input is correct
+                "question3": null, // No specific expected answer, any input is correct
+                "question4": "yes"
             };
 
-            // Evaluate user answers
-            for (var question in answers) {
+            // Check the answers and provide a result
+            for (var question in expectedAnswers) {
                 var userAnswer = document.getElementById(question).value.trim();
-                if (userAnswer.toLowerCase() === answers[question].toLowerCase()) {
-                    score += 1;
+                if (expectedAnswers[question] !== null) {
+                    if (userAnswer.toLowerCase() !== expectedAnswers[question].toLowerCase()) {
+                        alert("Incorrect. Please check your answer for Question " + question.slice(-1) + ".");
+                        return;
+                    }
                 }
             }
-
-            // Provide a result based on the score
-            if (score === Object.keys(answers).length) {
-                alert("Congratulations! You got all the questions right.");
-            } else {
-                alert("You scored " + score + " out of " + Object.keys(answers).length + ". Keep practicing!");
-            }
+            
+            alert("All answers are correct!");
         }
     </script>
 </body>
