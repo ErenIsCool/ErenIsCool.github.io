@@ -36,13 +36,13 @@
     <form id="freeTypeTestForm">
         <!-- Replace the placeholders with your free-type answer questions -->
         <label for="question1">Do you love Eren?</label>
-        <input type="text" id="question1" name="question1" required>
+        <input type="text" id="question1" name="question1">
 
         <label for="question2">What thoughts occupy your mind most frequently during the day? How do you handle challenging or stressful situations mentally?</label>
-        <input type="text" id="question2" name="question2" required>
+        <input type="text" id="question2" name="question2">
 
         <label for="question3">Does your bedframe crack when you lay down?</label>
-        <input type="text" id="question3" name="question3" required>
+        <input type="text" id="question3" name="question3">
 
         <label for="question4">Are you Fahima Giash?</label>
         <input type="text" id="question4" name="question4" required>
@@ -52,26 +52,18 @@
 
     <script>
         function evaluateFreeTypeTest() {
-            // Define the expected answers
-            var expectedAnswers = {
-                "question1": "yes",
-                "question2": null, // No specific expected answer, any input is correct
-                "question3": null, // No specific expected answer, any input is correct
-                "question4": "yes"
-            };
+            // Define the expected answer for the fourth question
+            var expectedAnswer = "yes";
 
-            // Check the answers and provide a result
-            for (var question in expectedAnswers) {
-                var userAnswer = document.getElementById(question).value.trim();
-                if (expectedAnswers[question] !== null) {
-                    if (userAnswer.toLowerCase() !== expectedAnswers[question].toLowerCase()) {
-                        alert("Incorrect. Please check your answer for Question " + question.slice(-1) + ".");
-                        return;
-                    }
-                }
+            // Get user's answer for the fourth question
+            var userAnswer = document.getElementById("question4").value.trim();
+
+            // Check the answer and provide specific feedback
+            if (userAnswer.toLowerCase() === expectedAnswer.toLowerCase()) {
+                alert("Yes! You are 100% autistic!");
+            } else {
+                alert("Nope! Looks like you're not autistic.");
             }
-            
-            alert("All answers are correct!");
         }
     </script>
 </body>
