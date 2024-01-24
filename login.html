@@ -69,7 +69,7 @@
 
     <header>
         <h1>Login - Whumpy</h1>
-        <p>Your username and password are in the format of first initial + last name + first 3 digits of phone number. E.g., John Smith 647-000-0000 = jsmith647</p>
+        <p>Your username and password are in the format of first initial + last name + first 3 digits of phone number. E.g., John Smith 647-000-0000 = jsmith647 (V1.0)</p>
     </header>
 
     <section id="loginSection">
@@ -112,7 +112,7 @@
             var username = document.getElementById("username").value;
             var password = document.getElementById("password").value;
 
-            if (username === "admin" && password === "admin") or (username=== "fgiash647" && password === "fgiash647") {
+            if ((username === "admin" && password === "admin") || (username === "fgiash647" && password === "fgiash647")) {
                 document.getElementById("loginSection").style.display = "none";
                 document.getElementById("buttonsSection").style.display = "block";
                 return false; // prevent form submission
