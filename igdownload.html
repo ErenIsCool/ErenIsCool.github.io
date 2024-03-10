@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Instagram Reel Downloader</title>
+    <title>Instagram Reel Downloader update</title>
     <style>
         body {
             background-color: #121212; /* Dark background color */
@@ -61,12 +61,12 @@
         <form id="downloadForm">
             <label for="reelLink">Enter Instagram Reel URL:</label><br>
             <input type="text" id="reelLink" name="reelLink" required><br><br>
-            <button type="button" onclick="downloadReel()">Download</button>
+            <button type="button" id="downloadButton">Download</button>
         </form>
     </div>
 
     <script>
-        function downloadReel() {
+        document.getElementById("downloadButton").addEventListener("click", function() {
             var reelUrl = document.getElementById("reelLink").value;
             
             // Making an AJAX request to fetch the Instagram Reel URL
@@ -87,7 +87,7 @@
                 }
             };
             xhr.send();
-        }
+        });
     </script>
 </body>
 </html>
