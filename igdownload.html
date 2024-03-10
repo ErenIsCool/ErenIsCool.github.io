@@ -4,34 +4,37 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Instagram Reel Downloader updated</title>
+    <title>Instagram Reel Downloader</title>
 </head>
 <body>
     <h1>Instagram Reel Downloader</h1>
     <form id="downloadForm">
         <label for="reelLink">Enter Instagram Reel URL:</label><br>
         <input type="text" id="reelLink" name="reelLink" required><br><br>
-        <button type="submit">Download</button>
+        <button type="button" onclick="downloadReel()">Download</button>
     </form>
 
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script>
-        document.getElementById("downloadForm").addEventListener("submit", function(event) {
-            event.preventDefault(); // prevent
-
+        function downloadReel() {
             var reelUrl = document.getElementById("reelLink").value;
-            var xhr = new XMLHttpRequest();
-
-            xhr.open("GET", reelUrl, true);
-            xhr.onreadystatechange = function() {
-                if (xhr.readyState === 4 && xhr.status === 200) {
-                    var videoUrl = xhr.responseText.match(/"video_url":"([^"]+)"/)[1].replace(/\\u0026/g, "&");
-                    window.location.href = videoUrl; // redirect
-                } else if (xhr.readyState === 4) {
-                    alert("Error: Unable to extract video URL. Please check the Instagram Reel URL.");
-                }
-            };
-            xhr.send();
-        });
+            
+            axios.get("https://api.allorigins.win/get?url=" + encodeURIComponent(reelUrl))
+                .then(function (response) {
+                    var html = response.data.contents;
+                    var matches = html.match(/"video_url":"([^"]+)"/);
+                    if (matches && matches[1]) {
+                        var mp4Url = matches[1].replace(/\\u0026/g, "&");
+                        window.location.href = mp4Url;
+                    } else {
+                        alert("Error: Unable to extract MP4 link.");
+                    }
+                })
+                .catch(function (error) {
+                    console.error("Error fetching Instagram Reel:", error);
+                    alert("Error fetching Instagram Reel. Please try again later.");
+                });
+        }
     </script>
 </body>
 </html>
