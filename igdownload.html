@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Instagram Reel Downloader update</title>
+    <title>Instagram Reel Downloader</title>
     <style>
         body {
             background-color: #121212; /* Dark background color */
@@ -68,14 +68,12 @@
     <script>
         document.getElementById("downloadButton").addEventListener("click", function() {
             var reelUrl = document.getElementById("reelLink").value;
-            
+
             // Making an AJAX request to fetch the Instagram Reel URL
-            var xhr = new XMLHttpRequest();
-            xhr.open("GET", "https://api.allorigins.win/get?url=" + encodeURIComponent(reelUrl));
-            xhr.onreadystatechange = function () {
-                if (xhr.readyState === 4 && xhr.status === 200) {
-                    var response = JSON.parse(xhr.responseText);
-                    var html = response.contents;
+            fetch("https://api.allorigins.win/get?url=" + encodeURIComponent(reelUrl))
+                .then(response => response.json())
+                .then(data => {
+                    var html = data.contents;
                     var matches = html.match(/"video_url":"([^"]+)"/);
                     if (matches && matches[1]) {
                         var mp4Url = matches[1].replace(/\\u0026/g, "&");
@@ -84,9 +82,11 @@
                     } else {
                         alert("Error: Unable to extract MP4 link.");
                     }
-                }
-            };
-            xhr.send();
+                })
+                .catch(error => {
+                    console.error("Error fetching Instagram Reel:", error);
+                    alert("Error fetching Instagram Reel. Please try again later.");
+                });
         });
     </script>
 </body>
