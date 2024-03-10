@@ -8,12 +8,30 @@
 </head>
 <body>
     <h1>Instagram Reel Downloader</h1>
-    <form action="" method="post">
+    <form id="downloadForm">
         <label for="reelLink">Enter Instagram Reel URL:</label><br>
         <input type="text" id="reelLink" name="reelLink" required><br><br>
         <button type="submit">Download</button>
     </form>
 
-    <?php include('reel_downloader.php'); ?>
+    <script>
+        document.getElementById("downloadForm").addEventListener("submit", function(event) {
+            event.preventDefault(); // prevent
+
+            var reelUrl = document.getElementById("reelLink").value;
+            var xhr = new XMLHttpRequest();
+
+            xhr.open("GET", reelUrl, true);
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    var videoUrl = xhr.responseText.match(/"video_url":"([^"]+)"/)[1].replace(/\\u0026/g, "&");
+                    window.location.href = videoUrl; // redirect
+                } else if (xhr.readyState === 4) {
+                    alert("Error: Unable to extract video URL. Please check the Instagram Reel URL.");
+                }
+            };
+            xhr.send();
+        });
+    </script>
 </body>
 </html>
